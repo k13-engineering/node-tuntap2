@@ -1,5 +1,5 @@
 {
-  "name": "@k13engineering/tuntap2",
+  "name": "@k13engineering/tuntap",
   "type": "module",
   "description": "TUN and TAP devices for Node.js on Linux",
   "publishConfig": {

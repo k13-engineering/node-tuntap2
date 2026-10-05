@@ -19,7 +19,7 @@ TUN and TAP devices for Node.js on Linux, written in TypeScript.
 ## Installation
 
 ```sh
-npm install @k13engineering/tuntap2
+npm install @k13engineering/tuntap
 ```
 
 The examples below use po6 with its syscall and memory backends, a poller, and node-netlink with node-rtnetlink to bring the interface up:
@@ -35,7 +35,7 @@ import { createPoller } from "@k13engineering/uv-poll";
 import { pinBuffer } from "buffer2address";
 import { createKernelAbiFor, createLinuxKernelInterface, createPo6Api, hostAbi } from "po6";
 import { syscall, syscallNumbers } from "syscall-napi";
-import { createTuntapDevice } from "@k13engineering/tuntap2";
+import { createTuntapDevice } from "@k13engineering/tuntap";
 
 const kernelAbi = createKernelAbiFor({ machineAbi: hostAbi });
 const po6 = createPo6Api({

@@ -12,7 +12,7 @@ const canRunInNetworkNamespace = () => {
 
 const itInNetworkNamespace = canRunInNetworkNamespace() ? it : it.skip;
 
-describe("tuntap2", () => {
+describe("tuntap", () => {
   it("should export the API", () => {
     assert.strictEqual(typeof createTuntapDevice, "function");
     assert.strictEqual(TUNSETIFF, 0x4004_54CAn);
