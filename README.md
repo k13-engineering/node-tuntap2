@@ -110,14 +110,6 @@ The device keeps the Node.js process alive until it is closed or paused.
 
 `TUNSETIFF`, `TUNGETIFF`, the `IFF_*` flags of `<linux/if_tun.h>` and `IFNAMSIZ` are exported as `bigint`s. `ifreqDefinition`, `createTuntapStructuresFor({ abi })` and `hostStructures` describe `struct ifreq`.
 
-## Migrating from the previous API
-
-- `create({ type, name })` is now `createTuntapDevice({ type, name, ... })`, which also takes the po6 API, the poller and the link API.
-- `onOpen`, `onPacket` and `onError` are passed on creation instead of being registered on the device. `onPacket` receives `Uint8Array`s.
-- The device name is available synchronously as `device.name`.
-- Packets are read on the main thread, driven by the event loop, instead of in a worker thread polling with `ppoll()`.
-- The package is published as `@k13engineering/tuntap2`, as `tuntap2` is taken on npm.
-
 ## Development
 
 ```sh
