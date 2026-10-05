@@ -1,0 +1,37 @@
+{
+  "name": "@k13engineering/tuntap2",
+  "type": "module",
+  "description": "TUN and TAP devices for Node.js on Linux",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/lib/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k13-engineering/node-tuntap2.git"
+  },
+  "keywords": [
+    "tun",
+    "tap",
+    "tuntap",
+    "network",
+    "linux",
+    "typescript"
+  ],
+  "os": [
+    "linux"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "author": "Simon Kadisch",
+  "license": "LGPL 2.1",
+  "bugs": {
+    "url": "https://github.com/k13-engineering/node-tuntap2/issues"
+  },
+  "homepage": "https://github.com/k13-engineering/node-tuntap2#readme"
+}

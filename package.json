@@ -1,37 +1,32 @@
 {
-  "name": "tuntap2",
   "type": "module",
-  "version": "0.0.1",
-  "description": "Node.js module that allows to create tun and tap devices",
-  "main": "lib/index.js",
+  "main": "lib/index.ts",
   "scripts": {
-    "test": "c8 --reporter lcov --reporter html --reporter text mocha",
-    "eslint": "eslint ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/k13-engineering/node-tuntap2.git"
-  },
-  "keywords": [],
-  "author": "Simon Kadisch",
-  "license": "LGPL 2.1",
-  "bugs": {
-    "url": "https://github.com/k13-engineering/node-tuntap2/issues"
-  },
-  "homepage": "https://github.com/k13-engineering/node-tuntap2#readme",
-  "dependencies": {
-    "ioctl": "^2.0.2",
-    "naive-emitter": "^0.0.1",
-    "node-rtnetlink": "^0.0.4",
-    "po6": "^0.0.5",
-    "rxjs": "^7.5.1",
-    "struct": "^0.0.12"
+    "build": "rm -rf dist/ && deno-node-build --root . --out dist/ --entry lib/index.ts",
+    "type-check": "tsc --noEmit",
+    "test": "c8 --reporter lcov --reporter html --reporter text --all --src lib/ --exclude 'lib/**/*.spec.ts' --exclude 'lib/test-support/' --check-coverage --lines 100 --branches 100 --functions 100 --statements 100 mocha 'lib/**/*.spec.ts'",
+    "lint": "eslint .",
+    "update-deps": "npm-check-updates -u"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/eslint-parser": "^7.12.1",
-    "c8": "^7.3.0",
-    "eslint": "^7.9.0",
-    "mocha": "^10.0.0"
+    "@eslint/js": "^10.0.1",
+    "@k13engineering/eslint-rules": "^0.0.6",
+    "@k13engineering/releasetool": "^0.0.5",
+    "@k13engineering/uv-poll": "^0.0.6",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.6.0",
+    "buffer2address": "^0.1.1",
+    "c8": "^11.0.0",
+    "deno-node": "^0.0.12",
+    "mocha": "^12.0.2",
+    "node-netlink": "^0.0.5",
+    "node-rtnetlink": "^0.0.5",
+    "npm-check-updates": "^20.0.2",
+    "syscall-napi": "^0.2.2",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "po6": "^0.1.1",
+    "ya-struct": "^0.0.17"
   }
 }
