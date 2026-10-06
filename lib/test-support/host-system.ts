@@ -7,7 +7,7 @@ import {
   formatNetlinkAddress,
   NETLINK_ROUTE
 } from "node-netlink";
-import { createRtnetlink, type TLinkInfo } from "node-rtnetlink";
+import { createRtnetlink } from "node-rtnetlink";
 import {
   createKernelAbiFor,
   createLinuxKernelInterface,
@@ -15,7 +15,6 @@ import {
   hostAbi
 } from "po6";
 import { syscall, syscallNumbers } from "syscall-napi";
-import type { TTuntapLinkApi } from "../tuntap.ts";
 
 // <linux/net.h>
 const SOCK_RAW = 3n;
@@ -40,15 +39,8 @@ const openRtnetlink = () => {
 
   const { link } = createRtnetlink({ netlink });
 
-  // node-rtnetlink 0.0.5 declares the results of its async link functions as unknown
-  const typedLink = link as unknown as {
-    findOneBy: TTuntapLinkApi["findOneBy"],
-    fromIndex: (args: { ifindex: number }) => { fetch: () => Promise<TLinkInfo> },
-    listAll: () => Promise<TLinkInfo[]>,
-  };
-
   return {
-    link: typedLink,
+    link,
     close: () => {
       netlink.detach();
       po6.close({ fd: fd as number });

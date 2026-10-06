@@ -20,7 +20,7 @@
     "deno-node": "^0.0.12",
     "mocha": "^12.0.2",
     "node-netlink": "^0.0.5",
-    "node-rtnetlink": "^0.0.5",
+    "node-rtnetlink": "^0.0.6",
     "npm-check-updates": "^20.0.2",
     "syscall-napi": "^0.2.2",
     "typescript": "^6.0.3"

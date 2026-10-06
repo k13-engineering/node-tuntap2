@@ -20,7 +20,7 @@ import {
   hostAbi
 } from "po6";
 import { syscall, syscallNumbers } from "syscall-napi";
-import { createTuntapDevice, type TTuntapLinkApi } from "../lib/index.ts";
+import { createTuntapDevice } from "../lib/index.ts";
 
 // <linux/net.h>
 const SOCK_RAW = 3n;
@@ -50,7 +50,7 @@ const device = createTuntapDevice({
   po6,
   kernelAbi,
   createPoller,
-  link: link as unknown as TTuntapLinkApi,
+  link,
   onOpen: ({ name, ifindex }) => {
     console.log(`${name} (ifindex ${ifindex}) is up, press Ctrl+C to stop`);
   },
