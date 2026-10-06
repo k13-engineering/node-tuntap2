@@ -17,11 +17,11 @@ const ifreqDefinition = {
         fixedAbi: {},
         fields: [
           { name: "ifru_flags", definition: { type: "c-type", cType: "short", fixedAbi: {} } },
-          { pad: true, name: undefined, definition: { type: "c-type", cType: "unsigned long", fixedAbi: {} } },
-          { pad: true, name: undefined, definition: { type: "c-type", cType: "unsigned short", fixedAbi: {} } },
+          { pad: true, name: "ifru_pad_long", definition: { type: "c-type", cType: "unsigned long", fixedAbi: {} } },
+          { pad: true, name: "ifru_pad_short", definition: { type: "c-type", cType: "unsigned short", fixedAbi: {} } },
           {
             pad: true,
-            name: undefined,
+            name: "ifru_pad_bytes",
             definition: { type: "array", elementType: { type: "c-type", cType: "unsigned char", fixedAbi: {} }, length: 3 },
           },
         ],
@@ -30,16 +30,22 @@ const ifreqDefinition = {
   ],
 } as const;
 
-const ifreq = define({ definition: ifreqDefinition });
+// spelled out, as the declaration files are generated per file and could not infer these types
+const ifreq: ReturnType<typeof define<typeof ifreqDefinition>> = define({ definition: ifreqDefinition });
 
-const createTuntapStructuresFor = ({ abi }: { abi: TAbi }) => {
+type TParserOf<T extends { parser: (args: { abi: TAbi }) => object }> = ReturnType<T["parser"]>;
+
+type TTuntapStructures = {
+  abi: TAbi;
+  ifreq: TParserOf<typeof ifreq>;
+};
+
+const createTuntapStructuresFor = ({ abi }: { abi: TAbi }): TTuntapStructures => {
   return {
     abi,
     ifreq: ifreq.parser({ abi }),
   };
 };
-
-type TTuntapStructures = ReturnType<typeof createTuntapStructuresFor>;
 
 const hostStructures = createTuntapStructuresFor({ abi: hostAbi });
 
